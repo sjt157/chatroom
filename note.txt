@@ -1,0 +1,35 @@
+sock_stream   是有保障的（即能保证数据正确传送到对方）面向连接的SOCKET，多用于资料（如文件）传送。
+sock_dgram   是无保障的面向消息的socket ， 主要用于在网络上发广播信息。
+SOCK_STREAM是基于TCP的，数据传输比较有保障。SOCK_DGRAM是基于UDP的，专门用于局域网，基于广播
+SOCK_STREAM 是数据流,一般是tcp/ip协议的编程,SOCK_DGRAM分是数据抱,是udp协议网络编程
+
+inet_pton函数：将点分十进制串转换成网络字节序二进制值，此函数对IPv4地址和IPv6地址都能处理。
+int inet_pton(int family,const char * strptr,void * addrptr); 
+//返回：1－－－成功　0－－－输入不是有效的表达格式　-1－－－失败 
+　　第一个参数可以是AF_INET或AF_INET6：第二个参数是一个指向点分十进制串的指针：第三个参数是一个指向转换后的网络字节序的二进制值的指针。
+
+inet_ntop函数：和inet_pton函数正好相反，inet_ntop函数是将网络字节序二进制值转换成点分十进制串。
+const char * inet_ntop(int family,const void *addrptr,char * strptr,size_t len);
+//返回：指向结果的指针－－－成功　　　NULL－－－失败 
+　　第一个参数可以是AF_INET或AF_INET6：第二个参数是一个指向网络字节序的二进制值的指针；第三个参数是一个指向转换后的点分十进制串的指针；第四个参数是目标的大小，以免函数溢出其调用者的缓冲区。
+
+
+
+ssize_t是什么类型的？
+
+解释一：为了增强程序的可移植性，便有了size_t，它是为了方便系统之间的移植而定义的，不同的系统上，定义size_t可能不一样。
+
+     在32位系统上 定义为 unsigned int 也就是说在32位系统上是32位无符号整形。在64位系统上定义为 unsigned long 也就是说在64位系统上是64位无符号整形。size_t一般用来表示一种计数，比如有多少东西被拷贝等。例如：sizeof操作符的结果类型是size_t，该类型保证能容纳实现所建立的最大对象的字节大小。 它的意义大致是“适于计量内存中可容纳的数据项目个数的无符号整数类型”。所以，它在数组下标和内存管理函数之类的地方广泛使用。而ssize_t这个数据类型用来表示可以被执行读写操作的数据块的大小.它和size_t类似,但必需是signed.意即：它表示的是signed size_t类型的。
+
+typedef unsigned long size_t
+
+解释二：ssize_t是signed size_t，
+
+size_t是标准C库中定义的，应为unsigned int。定义为typedef int ssize_t。
+
+而ssize_t:这个数据类型用来表示可以被执行读写操作的数据块的大小.它和size_t类似,但必需是signed.意即：它表示的是sign size_t类型的。
+
+TCP 7201=NetMonitor
+
+
+DLL(Dynamic Link Library)文件为动态链接库文件，又称“应用程序拓展”，是软件文件类型。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。当我们执行某一个程序时，相应的DLL文件就会被调用。一个应用程序可使用多个DLL文件，一个DLL文件也可能被不同的应用程序使用，这样的DLL文件被称为共享DLL文件。[1] 
